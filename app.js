@@ -1,3 +1,4 @@
-var helo = 'Hello - world'
+var hello = 'Hello - world'
+
 
 console.log(helo)
