@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
     tag: DataTypes.STRING,
     vendorId: DataTypes.INTEGER,
-    terminalId: DataTypes.INTEGER
+    terminalId: DataTypes.INTEGER,
   }, {});
   Bike.associate = function(models) {
     // associations can be defined here
