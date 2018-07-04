@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Customer</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<h1>Add Customer</h1>
+
+<table id="customers">
+<form action="/customer/add" method="post">
+  <tr>
+    <td>Name</td>
+    <td><input type="text" name="name" placeholder="Your Name"></td>
+  </tr>
+  
+  <tr>
+    <td>Age</td>
+    <td><input type="text" name="age" placeholder="Age"></td>
+  </tr>
+
+  <tr>
+    <td>Gender</td>
+    <td><input type="radio" name="gender" value="male" checked> Male
+        <input type="radio" name="gender" value="female"> Female</td>
+  </tr>
+
+  <tr>
+    <td>Bike Id</td>
+    <td><input type="text" name="bikeId" placeholder="Bike Id"></td>
+  </tr>
+
+  <br><br>
+  
+</table>
+    <input type="submit" name="submit">
+    </form>
+</body>
+</html>
