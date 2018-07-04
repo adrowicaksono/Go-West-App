@@ -9,8 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       status: {
-        type: Sequelize.STRING,
-        defaultValue : true,
+        type: Sequelize.STRING
       },
       tag: {
         type: Sequelize.STRING
@@ -23,13 +22,11 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue : new Date,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue : new Date,
+        type: Sequelize.DATE
       }
     });
   },
