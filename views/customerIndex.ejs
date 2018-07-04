@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
     <title>Customer Index</title>
     <style>
             table {
@@ -41,9 +42,9 @@
                 <td><%= dataCust.birthdate %></td>
                 <td><%= dataCust.bikeId %></td>
                 <td>
-                    <a href="customer/edit/<%= dataCust.id %>">Edit</a>
+                    <a href="/customer/edit/<%= dataCust.id %>">Edit</a>
                     ||
-                    <a href="customer/delete/<%= dataCust.id %>">Delete</a>
+                    <a href="/customer/delete/<%= dataCust.id %>">Delete</a>
                 </td>
             </tr>
         <% }) %>

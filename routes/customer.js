@@ -22,16 +22,20 @@ app.post('/add', function(req, res) {
         age: req.body.age,
         gender: req.body.gender,
         email: req.body.email,
+        birthdate: req.body.birthdate,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     })
     .then(function() {
+        console.log(req.body)
         res.redirect('/customer')
     })
     .catch(function(err) {
-        res.render('addNewCustomer', {err})
+        res.send(err)
     })
 })
 
-app.post('/delete/:id', function(req, res) {
+app.get('/delete/:id', function(req, res) {
     Model.Customer.destroy(
         {
             where: {
@@ -43,5 +47,34 @@ app.post('/delete/:id', function(req, res) {
         res.redirect('/customer')
     })
 })
+
+app.get('/edit/:id', function(req, res) {
+    Model.Customer.findById(req.params.id)
+    .then(function(edited) {
+        res.render('editCustomer', {edited})
+    })
+    .catch(function(err) {
+        res.send(err)
+    })
+})
+
+app.post('/edit/:id', function(req, res) {
+    Model.Customer.update({
+        name: req.body.name,
+        age: req.body.age,
+        gender: req.body.gender,
+        email: req.body.email,
+        birthdate: req.body.birthdate,
+    }, { where:
+        {id: req.params.id}
+    })
+    .then(function() {
+        res.redirect('/customer')
+    })
+    .catch(function(err) {
+        res.render('editCustomer')
+    })
+})
+
 
 module.exports = app

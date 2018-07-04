@@ -24,23 +24,27 @@
 <body>
     <table>
         <tr>
-            <th>Name</th>
-            <th>Bike</th>
+            <th>ID</th>
+            <th>Location</th>
+            <th>Bike List</th>
+            <th>Vendor ID</th>
+            <th>Terminal ID</th>
             <th>Option</th>
         </tr>
-
-        <% dataVendor.forEach(function(dataVen) { %>
+        
+        <% dataBike.forEach(function(dataB) { %>
             <tr>
-                <td><%= dataVen.name %></td>
-                <td><%= dataVen.bikelist %></td>
+                <td><%= dataB.id %></td>
+                <td><%= dataB.status %></td>
+                <td><%= dataB.tag %></td>
+                <td>---</td>
+                <td>***</td>
                 <td>
-                    <a href="/vendor/edit/<%= dataVen.id %>">Edit</a>
-                    ||
-                    <a href="/vendor/delete/<%= dataVen.id %>">Delete</a>
+                    <a href="/bike/delete/<%= dataB.id %>">Delete</a>
                 </td>
             </tr>
-        <% }) %>
 
+        <% }) %>
     </table>
 </body>
 </html>

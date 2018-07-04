@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
     <title>Add Customer</title>
     <style>
         table {
@@ -23,8 +24,8 @@
 <body>
 <h1>Add Customer</h1>
 
-<table id="customers">
 <form action="/customer/add" method="post">
+<table id="customer">
   <tr>
     <td>Name</td>
     <td><input type="text" name="name" placeholder="Your Name"></td>
@@ -42,11 +43,21 @@
   </tr>
 
   <tr>
+      <td>Email</td>
+      <td><input type="text" name="email"></td>
+  </tr>
+
+  <tr>
     <td>Bike Id</td>
     <td><input type="text" name="bikeId" placeholder="Bike Id"></td>
   </tr>
 
+  <tr>
+      <td>Birthdate</td>
+      <td><input type="date" name="birthdate"></td>
+  </tr>
   <br><br>
+  
   
 </table>
     <input type="submit" name="submit">

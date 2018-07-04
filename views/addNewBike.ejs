@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
     <title>Add Customer</title>
     <style>
         table {
@@ -22,21 +23,18 @@
 </head>
 <body>
 <h1>Add Bike</h1>
-<table id="customers">
-    <tr>
-      <td>Status</td>
-      <td><input type="text" placeholder="Status"></td>
-    </tr>
+<form action="/bike/add" method="post">
+<table id="bike">
     
     <tr>
       <td>Tag</td>
-      <td><input type="text" placeholder="Tag"></td>
+      <td><input type="text" name="tag" placeholder="Tag"></td>
     </tr>
 
 </table>
 <br><br>
-
 <input type="submit" name="submit">
+</form>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html>
 <head>
         <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
-    <title>INDEX PAGE</title>
+    <title>Edit Customer</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -13,33 +13,30 @@
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
-            padding: 8px;
+            padding: 5px;
         }
-        
+            
         tr:nth-child(even) {
             background-color: #dddddd;
         }
     </style>
 </head>
 <body>
-    <table>
-        <th>Menu</th>
-        <tr>
-            <td><a href="/">Home</a></td>
-        </tr>
-
-        <tr>
-            <td><a href="/customer/add">Add Customer</a></td>
-        </tr>
-
-        <tr>
-            <td><a href="/vendor/add">Add Vendor</a></td>
-        </tr>
-
-        <tr>
-            <td><a href="/addbike">Add Bike</a></td>
-        </tr>
-
-    </table>
+<h1>Edit Customer</h1>
+<table id="vendor">
+        <form action="/vendor/edit/<%=edited.id%>" method="post">
+    <tr>
+        <td>Name</td>
+        <td><input type="text" name="name" placeholder="Name"></td>
+    </tr>
+  
+    <tr>
+        <td>Bike Id</td>
+        <td><input type="text" name="bikeid" placeholder="Bike Id"></td>
+    </tr>
+</table>
+<br><br>
+    <input type="submit" value="submit">
+</form>
 </body>
 </html>

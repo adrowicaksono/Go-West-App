@@ -2,7 +2,7 @@
 <html>
 <head>
         <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
-    <title>INDEX PAGE</title>
+    <title>Edit Terminal</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -13,33 +13,27 @@
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
-            padding: 8px;
+            padding: 5px;
         }
-        
+            
         tr:nth-child(even) {
             background-color: #dddddd;
         }
     </style>
 </head>
 <body>
-    <table>
-        <th>Menu</th>
-        <tr>
-            <td><a href="/">Home</a></td>
-        </tr>
+<h1>Edit Terminal</h1>
+<table id="vendor">
+        <form action="/terminal/edit/<%=edited.id%>" method="post">
+    <tr>
+        <td>Location</td>
+        <td><input type="text" name="location" placeholder="Location"></td>
+    </tr>
+  
 
-        <tr>
-            <td><a href="/customer/add">Add Customer</a></td>
-        </tr>
-
-        <tr>
-            <td><a href="/vendor/add">Add Vendor</a></td>
-        </tr>
-
-        <tr>
-            <td><a href="/addbike">Add Bike</a></td>
-        </tr>
-
-    </table>
+</table>
+<br><br>
+    <input type="submit" value="submit">
+</form>
 </body>
 </html>
