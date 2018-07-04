@@ -2,7 +2,7 @@
 <html>
 <head>
         <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
-    <title>Add Customer</title>
+    <title>Edit Terminal</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -13,28 +13,27 @@
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
-            padding: 8px;
+            padding: 5px;
         }
-        
+            
         tr:nth-child(even) {
             background-color: #dddddd;
         }
     </style>
 </head>
 <body>
-<h1>Add Bike</h1>
-<form action="/bike/add" method="post">
-<table id="bike">
-    
+<h1>Edit Terminal</h1>
+<table id="vendor">
+        <form action="/terminal/edit/<%=edited.id%>" method="post">
     <tr>
-      <td>Tag</td>
-      <td><input type="text" name="tag" placeholder="Tag"></td>
+        <td>Location</td>
+        <td><input type="text" name="location" placeholder="Location"></td>
     </tr>
+  
 
 </table>
 <br><br>
-<input type="submit" name="submit">
+    <input type="submit" value="submit">
 </form>
-
 </body>
 </html>

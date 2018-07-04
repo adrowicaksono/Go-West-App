@@ -41,9 +41,9 @@ app.get('/delete/:id', function(req, res) {
 })
 
 app.get('/edit/:id', function(req, res) {
-    Model.terminal.findById(req.params.id)
-    .then(function(dataTerminal) {
-        res.render('editTerminal', {dataTerminal})
+    Model.Terminal.findById(req.params.id)
+    .then(function(edited) {
+        res.render('editTerminal', {edited})
     })
     .catch(function(err) {
         res.send(err)
