@@ -17,4 +17,11 @@ app.post('/add', function(req, res) {
     })
 })
 
+app.get('delete/:id', function(req, res) {
+    Model.Bike.destroy()
+        .then(function() {
+            res.redirect('/bike')
+        })
+})
+
 module.exports = app

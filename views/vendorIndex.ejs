@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
     <title>Customer Index</title>
     <style>
             table {
@@ -24,6 +25,8 @@
     <table>
         <tr>
             <th>Name</th>
+            <th>Bike</th>
+            <th>Option</th>
         </tr>
 
         <% dataVendor.forEach(function(dataVen) { %>
@@ -31,9 +34,9 @@
                 <td><%= dataVen.name %></td>
                 <td><%= dataVen.bikelist %></td>
                 <td>
-                    <a href="terminal/edit/<%= dataVen.id %>">Edit</a>
+                    <a href="/vendor/edit/<%= dataVen.id %>">Edit</a>
                     ||
-                    <a href="terminal/delete/<%= dataVen.id %>">Delete</a>
+                    <a href="/vendor/delete/<%= dataVen.id %>">Delete</a>
                 </td>
             </tr>
         <% }) %>

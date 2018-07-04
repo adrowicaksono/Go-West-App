@@ -2,7 +2,7 @@
 <html>
 <head>
         <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
-    <title>Add Customer</title>
+    <title>INDEX PAGE</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -22,23 +22,25 @@
     </style>
 </head>
 <body>
-<h1>Add Bike</h1>
-<form action="/bike/add" method="post">
-<table id="customers">
-    <tr>
-      <td>Status</td>
-      <td><input type="text" placeholder="Status"></td>
-    </tr>
-    
-    <tr>
-      <td>Tag</td>
-      <td><input type="text" placeholder="Tag"></td>
-    </tr>
+    <form action="/login/authentication" method="post">
+    <table>
 
-</table>
-<br><br>
+        <tr>
+            <td><a href="/">Login</a></td>
+        </tr>
+
+        <tr>
+            <td>Username</td>
+            <td><input type="text" name="username" placeholder="username"></td>
+        </tr>
+
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password" placeholder="password"></td>
+        </tr>
+    </table>
+    <br>
+    <input type="submit" name="submit">
 </form>
-<input type="submit" name="submit">
-
 </body>
 </html>
