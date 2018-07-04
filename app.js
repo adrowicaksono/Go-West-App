@@ -4,7 +4,7 @@ const app = express()
 app.use(express.urlencoded({extended:false}))
 
 app.get("/auth",function(req,res){
-    res
+
 })
 
 
