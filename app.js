@@ -9,7 +9,8 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({extended: false}))
 
-app.set('view engine', 'ejs')
+app.get("/auth",function(req,res){
+})
 
 app.use('/', index)
 app.use('/customer', customer)
