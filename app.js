@@ -14,7 +14,7 @@ app.set('view engine', 'ejs')
 app.use('/', index)
 app.use('/customer', customer)
 app.use('/vendor', vendor)
-app.use('/addbike', bike)
+app.use('/bike', bike)
 app.use('/terminal', terminal)
 
 
