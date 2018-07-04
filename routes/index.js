@@ -6,6 +6,10 @@ app.get('/', function(req, res) {
     res.render('login')
 })
 
+app.get('/index', function(req, res) {
+    res.render('index')
+})
+
 app.post('/login/authentication', function(req, res) {
     Model.Customer.findAll({
         where: {

@@ -25,10 +25,31 @@
 <h1>Add Bike</h1>
 <form action="/bike/add" method="post">
 <table id="bike">
-    
     <tr>
-      <td>Tag</td>
-      <td><input type="text" name="tag" placeholder="Tag"></td>
+      <td>Category</td>
+      <td><input type="text" name="category" placeholder="Category"></td>
+    </tr>
+
+    <tr>
+        <td>Vendor</td>
+        <td>
+            <select name="VendorId" id="">
+                <% vendors.forEach(function(el){ %>
+                    <option value="<%= el.id %>"><%- el.name %></option>
+                <% }) %>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Location</td>
+        <td>
+            <select name="TerminalId" id="">
+                    <% terminals.forEach(function(el){ %>
+                        <option value="<%- el.id %>"><%- el.location %></option>
+                    <% }) %>
+            </select>
+        </td>
     </tr>
 
 </table>

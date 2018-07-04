@@ -8,11 +8,13 @@ module.exports = (sequelize, DataTypes) => {
     tag: {
       type: DataTypes.STRING
     },
-    vendorId: DataTypes.INTEGER,
-    terminalId: DataTypes.INTEGER
+    VendorId: DataTypes.INTEGER,
+    TerminalId: DataTypes.INTEGER,
+    category : DataTypes.STRING,
   }, {});
   Bike.associate = function(models) {
-    // associations can be defined here
+    Bike.belongsTo(models.Terminal)
+    Bike.belongsTo(models.Vendor)
   };
   return Bike;
 };

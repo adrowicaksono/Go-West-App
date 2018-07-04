@@ -39,7 +39,7 @@
                 <td><%= dataCust.age %></td>
                 <td><%= dataCust.gender %></td>
                 <td><%= dataCust.email %></td>
-                <td><%= dataCust.birthdate %></td>
+                <td><%- dateFormat(new Date(dataCust.birthdate)) %></td>
                 <td><%= dataCust.bikeId %></td>
                 <td>
                     <a href="/customer/edit/<%= dataCust.id %>">Edit</a>

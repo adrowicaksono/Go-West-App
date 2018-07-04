@@ -14,10 +14,10 @@ module.exports = {
       tag: {
         type: Sequelize.STRING
       },
-      vendorId: {
+      VendorId: {
         type: Sequelize.INTEGER
       },
-      terminalId: {
+      TerminalId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
