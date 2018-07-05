@@ -1,4 +1,4 @@
-const PORT = 3000
+const port = process.env.PORT || 4000;
 const express = require('express')
 const app = express()
 const session = require('express-session')
@@ -39,6 +39,4 @@ app.get('/send', function(req, res) {
     res.render('mail.handlebars')
 })
 
-app.listen(PORT, function() {
-    console.log(`ONLINE ON ${PORT}`)
-})
+app.listen(port,console.log('listening on port 4000')) 
