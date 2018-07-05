@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
     <title>Add Customer</title>
     <style>
         table {
@@ -22,21 +23,39 @@
 </head>
 <body>
 <h1>Add Bike</h1>
-<table id="customers">
+<form action="/bike/add" method="post">
+<table id="bike">
     <tr>
-      <td>Status</td>
-      <td><input type="text" placeholder="Status"></td>
+      <td>Category</td>
+      <td><input type="text" name="category" placeholder="Category"></td>
     </tr>
-    
+
     <tr>
-      <td>Tag</td>
-      <td><input type="text" placeholder="Tag"></td>
+        <td>Vendor</td>
+        <td>
+            <select name="VendorId" id="">
+                <% vendors.forEach(function(el){ %>
+                    <option value="<%= el.id %>"><%- el.name %></option>
+                <% }) %>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Location</td>
+        <td>
+            <select name="TerminalId" id="">
+                    <% terminals.forEach(function(el){ %>
+                        <option value="<%- el.id %>"><%- el.location %></option>
+                    <% }) %>
+            </select>
+        </td>
     </tr>
 
 </table>
 <br><br>
-
 <input type="submit" name="submit">
+</form>
 
 </body>
 </html>

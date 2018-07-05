@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-4KIc2mnKfAA7VjirNLk2Sqp7jxFNq1q8+FhYGxhW2l52lt4HJsfksL+hjswHfbl/" crossorigin="anonymous">
+    <title>Customer Index</title>
+    <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: center;
+                padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+</head>
+<body>
+    <h1>Bikes Index</h1>
+    <ul>
+        <li><a href="/bike/add">add bike</a></li>
+        <li><a href="/index">index</a></li>
+    </ul>
+    
+    
+    <table>
+        <tr>
+            <th>No.</th>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Category</th>
+            <th>Vendor ID</th>
+            <th>Terminal ID</th>
+            <th>Option</th>
+        </tr>
+        
+        <% dataBike.forEach(function(dataB, id) { %>
+            <tr>
+                <td><%= id +1 %></td>
+                <td><%= dataB.id %></td>
+                <td><%= dataB.status %></td>
+                <td><%= dataB.category %></td>
+                <td><%= dataB.Vendor.name %></td>
+                <td><%= dataB.Terminal.location %></td>
+                <td>
+                    <a href="/bike/delete/<%= dataB.id %>">Delete</a>
+                </td>
+            </tr>
+
+        <% }) %>
+    </table>
+</body>
+</html>

@@ -9,16 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       status: {
-        type: Sequelize.STRING,
-        defaultValue : true,
+        type: Sequelize.STRING
       },
       tag: {
         type: Sequelize.STRING
       },
-      vendorId: {
+      VendorId: {
         type: Sequelize.INTEGER
       },
-      terminalId: {
+      TerminalId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

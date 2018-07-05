@@ -1,14 +1,20 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Bike = sequelize.define('Bike', {
-      status: DataTypes.STRING,
-      tag: DataTypes.STRING,
-      category : DataTypes.STRING,
-      vendorId: DataTypes.INTEGER,
-      terminalId: DataTypes.INTEGER,
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: 'free'
+    },
+    tag: {
+      type: DataTypes.STRING
+    },
+    VendorId: DataTypes.INTEGER,
+    TerminalId: DataTypes.INTEGER,
+    category : DataTypes.STRING,
   }, {});
   Bike.associate = function(models) {
-    // associations can be defined here
+    Bike.belongsTo(models.Terminal)
+    Bike.belongsTo(models.Vendor)
   };
   return Bike;
 };
