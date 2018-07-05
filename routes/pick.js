@@ -54,7 +54,49 @@ route.post('/:id/update', function(req,res){
             id : req.session.current_user.id
         }
     })
-    .then(function(){
+    .then(function(customer){
+        Model.Bike
+        .findOne({
+            include : [Model.Terminal],
+            where : {
+                id : req.params.id
+            }
+        })
+        .then(function(bike){
+            res.render('../views/Go-West/mainPage', {user:req.session.current_user, bike:bike})
+        })
+        .catch(function(err){
+            res.json(err)
+        })
+        
+    })
+    .catch(function(err){
+        res.json(err)
+    })
+})
+
+route.post('/:idBike/:idCustomer/return',function(req, res){
+    let bike = Model.Bike
+    .update({
+        status:true
+    },{
+        where:{
+            id:req.params.idBike
+        }
+    })
+    
+
+    let customer = Model.Customer
+        .update({
+            BikeId : null
+        },{
+            where :{
+                id:req.params.idCustomer
+            }
+        })
+
+    Promise.all([bike, customer])
+    .then(function(values){
         res.redirect('/pick')
     })
     .catch(function(err){

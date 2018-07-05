@@ -16,5 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     Bike.belongsTo(models.Terminal)
     Bike.belongsTo(models.Vendor)
   };
+  
+
+
+
+
   return Bike;
 };
