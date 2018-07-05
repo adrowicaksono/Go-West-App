@@ -14,7 +14,7 @@ const exphbs = require('express-handlebars')
 
 //helpers
 app.locals.dateFormat = require('./helpers/dateFormat.js')
-
+// app.use(express.cookieParser())
 app.use(express.urlencoded({extended: false}))
 
 app.use(session({
@@ -34,6 +34,7 @@ app.use('/vendor', vendor)
 app.use('/bike', bike)
 app.use('/terminal', terminal)
 app.use('/pick', pick)
+
 app.get('/send', function(req, res) {
     res.render('mail.handlebars')
 })

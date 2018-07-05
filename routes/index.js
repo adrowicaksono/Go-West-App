@@ -50,7 +50,8 @@ route.post('/login/authentication',(req,res,next)=>{
     	 if(customer) {
             let password = bcrypt.compareSync(passTemp,customer.password)
     		if (password) {
-    			req.session.current_user = customer
+                req.session.current_user = customer
+                console.log(req.session.current_user)
 	    		res.render('../views/Go-West/mainPage')
     		}else{
                 res.render('../views/auth/login', {

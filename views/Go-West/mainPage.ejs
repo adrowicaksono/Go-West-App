@@ -47,17 +47,19 @@
                             
                             <ul>
                                 <% el.Bikes.forEach(elB =>{ %>
-                                    <li> 
+                                  
                                         <% if(elB.status === true){ %>
+                                            <li>
                                             <div class="form-group">
                                                     <fieldset disabled="">
                                                       <label class="control-label" for="disabledInput"><%- elB.id %> : <%- elB.category %> </label>
                                                       <input class="form-control" name="id" values="<%- elB.id %>" id="disabledInput" type="text" placeholder="<%- elB.category %>" disabled="">
                                                     </fieldset>
                                             </div>
-                                            <a class="btn btn-warning btn-sm" href="/pick/<%- elB.id %>" role="button">PICK !!!</a>
+                                            </li>
+                                            <a class="btn btn-warning btn-sm" href="/pick/<%- elB.id %>/bike" role="button">PICK !!!</a>
                                         <% } %>
-                                    </li>
+                                    
                                 <% }) %>
                             </ul>
                         </td>

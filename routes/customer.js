@@ -3,7 +3,23 @@ const route = express.Router()
 const Model = require('../models')
 const sendEmail = require('../mailer.js')
 
-route.get('/', function(req, res) {
+route.get('/',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+} ,function(req, res) {
 
     Model.Customer.findAll()
         .then(function(dataCustomer) {
@@ -15,7 +31,23 @@ route.get('/', function(req, res) {
 })
 
 
-route.get('/add', function(req, res) {
+route.get('/add',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+} ,function(req, res) {
     res.render('addNewCustomer')
 })
 
@@ -38,7 +70,23 @@ route.post('/add', function(req, res) {
 })
 
 
-route.get('/delete/:id', function(req, res) {
+route.get('/delete/:id',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+} ,function(req, res) {
     Model.Customer.destroy(
         {
             where: {
@@ -51,7 +99,23 @@ route.get('/delete/:id', function(req, res) {
     })
 })
 
-route.get('/edit/:id', function(req, res) {
+route.get('/edit/:id',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+} ,function(req, res) {
 
     Model.Customer.findById(req.params.id)
     .then(function(edited) {
@@ -62,7 +126,23 @@ route.get('/edit/:id', function(req, res) {
     })
 })
 
-route.post('/edit/:id', function(req, res) {
+route.post('/edit/:id',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+} ,function(req, res) {
     Model.Customer.update({
         name: req.body.name,
         age: req.body.age,
