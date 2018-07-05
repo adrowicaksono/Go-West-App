@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/adrowicaksono/Go-West-App#readme",
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",

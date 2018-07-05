@@ -24,7 +24,7 @@ module.exports = {
       email : "ine@mail.com",
     },{
       name : "Shizuka",
-      gender :"male",
+      gender :"female",
       email : "shizuka@mail.com",
     }],{})
   },

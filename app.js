@@ -1,12 +1,13 @@
 const PORT = 3000
 const express = require('express')
 const app = express()
+const session = require('express-session')
 const index = require('./routes/index.js')
 const vendor = require('./routes/vendor.js')
 const customer = require('./routes/customer.js')
 const bike = require('./routes/bike.js')
 const terminal = require('./routes/terminal')
-const bodyParser = require('body-parser')
+//const bodyParser = require('body-parser')
 
 
 //helpers
@@ -16,8 +17,12 @@ app.set("view engine", "ejs")
 
 
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}))
 
+app.use(session({
+    secret:'0912uk!&#s82b!@#',
+    cookie:{}
+}))
 
 
 app.use('/', index)

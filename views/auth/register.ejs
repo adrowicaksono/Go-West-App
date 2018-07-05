@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-S7YMK1xjUjSpEnF4P8hPUcgjXYLZKK3fQW1j5ObLSl787II9p8RO9XUGehRmKsxd" crossorigin="anonymous">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Go West Register</title>
 </head>
 <body>
-    
+        <%- include('../partial/header.ejs') %>
+        <form class="form-horizontal" action="/register"  method="post">
+            <%- include('../partial/error.ejs') %>
+            <fieldset>
+                <div class="form-group">
+                
+                <label class="col-lg-2 control-label">username</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control"name="name" placeholder="username">
+                </div>
+                </div>
+
+                <div class="form-group">
+                <label class="col-lg-2 control-label">email</label>
+                <div class="col-lg-10">
+                        <input type="text" class="form-control"name="email" placeholder="email.@mail.com">
+                </div>
+                </div>
+
+                <div class="form-group">
+                        <label class="col-lg-2 control-label">birthdate</label>
+                        <div class="col-lg-10">
+                        <input type="date" class="form-control"name="birthdate">
+                </div>
+                </div>
+
+                <div class="form-group">
+                        <label class="col-lg-2 control-label">Gender</label>
+                <div class="col-lg-10"></div>
+                    <select style="color:black;height:50px;width:auto" class="custom-select form-control" name="gender">
+                        <option selected="">Open this select menu</option>
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                      </select>  
+                </div>
+                </div>
+                <div class="form-group">
+                <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="password">
+                </div>
+                </div>
+                <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="reset" class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                </div>
+            </fieldset>
+        </form>
 </body>
 </html>

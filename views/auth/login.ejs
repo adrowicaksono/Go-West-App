@@ -9,13 +9,12 @@
 <body>
     <%- include('../partial/header.ejs') %>
     <form class="form-horizontal"action="/login/authentication" method="post">
+        <%- include('../partial/error.ejs') %>
         <fieldset>
-
-        
             <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">username</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputEmail" name="username" placeholder="username">
+                <input type="text" class="form-control" id="inputEmail" name="name" placeholder="username">
             </div>
             </div>
             <div class="form-group">

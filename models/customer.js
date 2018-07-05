@@ -22,8 +22,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     }
     ,
-    BikeId: DataTypes.INTEGER
-  }, {});
+    BikeId: DataTypes.INTEGER,
+    password: DataTypes.STRING,
+    salt: DataTypes.STRING,
+    role: DataTypes.STRING, 
+  }, {
+    hooks: {
+      beforeCreate: function(customer,option){
+        const bcrypt = require('bcrypt')
+        const generateSalt = bcrypt.genSaltSync(8)
+        const hash = bcrypt.hashSync(customer.password,generateSalt)
+        customer.salt = generateSalt
+        customer.password = hash
+      }
+    }
+  });
   Customer.associate = function(models) {
     // associations can be defined here
   };
