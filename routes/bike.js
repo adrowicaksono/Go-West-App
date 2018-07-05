@@ -39,7 +39,7 @@ route.post('/add', function(req, res) {
     }).then(function() {
         res.redirect('/bike')
     }).catch(function(err) {
-        res.send(err)
+        res.render('addNewBike', {msg: 'Please fill all fields'})
     })
 })
 

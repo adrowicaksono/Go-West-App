@@ -13,7 +13,7 @@ route.get('/', function(req, res) {
 })
 
 route.get('/add', function(req, res) {
-    res.render('addNewTerminal')
+    res.render('addNewTerminal', {msg: null})
 })
 
 route.post('/add', function(req, res) {
@@ -26,7 +26,7 @@ route.post('/add', function(req, res) {
         res.redirect('/terminal')
     })
     .catch(function(err) {
-        res.send(err)
+        res.render('addNewTerminal', {msg: 'Please fill all fields'})
     })
 })
 

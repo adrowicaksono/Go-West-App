@@ -22,6 +22,10 @@
 </head>
 <body>
 <h1>Add New Terminal</h1>
+    <%if(msg) {%>
+        <%=msg%>
+    <%}%>
+
 <form action="/terminal/add" method="POST">
 <table id="customers">
   <tr>

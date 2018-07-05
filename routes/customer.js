@@ -16,7 +16,7 @@ route.get('/', function(req, res) {
 
 
 route.get('/add', function(req, res) {
-    res.render('addNewCustomer')
+    res.render('addNewCustomer', {msg:null})
 })
 
 route.post('/add', function(req, res) {
@@ -32,8 +32,9 @@ route.post('/add', function(req, res) {
         sendEmail(dataCust.dataValues)
         res.redirect('/customer')
     })
-    .catch(function(err) {
-        res.send(err)
+    .catch(function() {
+        console.log('catch error')
+        res.render('addNewCustomer', {msg: 'Please fill all fields'})
     })
 })
 

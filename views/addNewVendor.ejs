@@ -23,6 +23,10 @@
 </head>
 <body>
 <h1>Add Vendor</h1>
+    <%if(msg) {%>
+        <%=msg%>
+    <%}%>
+
 <form action="/vendor/add" method="POST">
 <table id="customers">
   <tr>

@@ -10,15 +10,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     VendorId: DataTypes.INTEGER,
     TerminalId: DataTypes.INTEGER,
-    category : DataTypes.STRING,
+    category :{
+      type: DataTypes.STRING,
+      validate: {
+        allowNull: false
+      },
+    }
   }, {});
   Bike.associate = function(models) {
     Bike.belongsTo(models.Terminal)
     Bike.belongsTo(models.Vendor)
   };
   
-
-
 
 
   return Bike;

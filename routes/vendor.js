@@ -12,7 +12,7 @@ route.get('/', function(req, res) {
 })
 
 route.get('/add', function(req, res) {
-    res.render('addNewVendor')
+    res.render('addNewVendor', {msg: null})
 })
 
 route.post('/add', function(req, res) {
@@ -26,7 +26,7 @@ route.post('/add', function(req, res) {
         res.redirect('/vendor')
     })
     .catch(function(err) {
-        res.send(err)
+        res.render('addNewVendor', {msg: 'Please fill all fields'})
     })
 })
 
