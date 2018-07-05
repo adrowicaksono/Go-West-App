@@ -1,6 +1,7 @@
 const express = require('express')
 const route = express.Router()
 const Model = require('../models')
+const sendEmail = require('../mailer.js')
 
 route.get('/', function(req, res) {
 
@@ -19,16 +20,15 @@ route.get('/add', function(req, res) {
 })
 
 route.post('/add', function(req, res) {
-    console.log(req.body)
     Model.Customer.create({
         name: req.body.name,
         password: req.body.password,
         gender: req.body.gender,
         email: req.body.email,
         birthdate: req.body.birthdate,
-        password :12345,
     })
     .then(function(dataCust) {
+        // console.log('customer routes---',req.body)
         sendEmail(dataCust.dataValues)
         res.redirect('/customer')
     })
