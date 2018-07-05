@@ -1,9 +1,10 @@
 const express = require('express')
-const router = express.Router()
+
+const route = express.Router()
 const Model = require('../models')
 
+route.get('/', function(req, res) {
 
-router.get('/', function(req, res) {
     Model.Customer.findAll()
         .then(function(dataCustomer) {
             res.render('customerIndex', {dataCustomer})
@@ -13,11 +14,13 @@ router.get('/', function(req, res) {
         })
 })
 
-router.get('/add', function(req, res) {
+
+route.get('/add', function(req, res) {
     res.render('addNewCustomer')
 })
 
-router.post('/add', function(req, res) {
+route.post('/add', function(req, res) {
+
     Model.Customer.create({
         name: req.body.name,
         gender: req.body.gender,
@@ -35,7 +38,8 @@ router.post('/add', function(req, res) {
     })
 })
 
-router.get('/delete/:id', function(req, res) {
+
+route.get('/delete/:id', function(req, res) {
     Model.Customer.destroy(
         {
             where: {
@@ -48,7 +52,8 @@ router.get('/delete/:id', function(req, res) {
     })
 })
 
-router.get('/edit/:id', function(req, res) {
+route.get('/edit/:id', function(req, res) {
+
     Model.Customer.findById(req.params.id)
     .then(function(edited) {
         res.render('editCustomer', {edited})
@@ -58,7 +63,7 @@ router.get('/edit/:id', function(req, res) {
     })
 })
 
-router.post('/edit/:id', function(req, res) {
+route.post('/edit/:id', function(req, res) {
     Model.Customer.update({
         name: req.body.name,
         age: req.body.age,
@@ -77,4 +82,6 @@ router.post('/edit/:id', function(req, res) {
 })
 
 
-module.exports = router
+
+module.exports = route
+

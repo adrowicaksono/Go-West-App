@@ -1,16 +1,18 @@
 const express = require('express')
-const app = express()
+const route = express.Router()
 const Model = require('../models')
 
-app.get('/', function(req, res) {
+route.get('/', function(req, res) {
     res.render('login')
 })
 
-app.get('/index', function(req, res) {
+
+route.get('/index', function(req, res) {
     res.render('index')
 })
 
-app.post('/login/authentication', function(req, res) {
+route.post('/login/authentication', function(req, res) {
+
     Model.Customer.findAll({
         where: {
             name: req.body.username,
@@ -23,4 +25,4 @@ app.post('/login/authentication', function(req, res) {
     })
 })
 
-module.exports = app
+module.exports = route

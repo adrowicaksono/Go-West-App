@@ -1,36 +1,25 @@
 const express = require('express')
-const app = express()
+const route = express.Router()
 const Model = require('../models')
 
-app.get('/', function(req, res) {
-    Model.Bike.findAll({
-        include:[Model.Vendor, Model.Terminal],
-        order :[['createdAt','desc']]
-    })
-    .then(function(dataBike) {
-        res.render('bikeIndex', {dataBike})
-    })
-    .catch(function(err) {
-        res.send(err)
-    })
+
+route.get('/', function(req, res) {
+    Model.Bike.findAll()
+        .then(function(dataBike) {
+            res.render('bikeIndex', {dataBike})
+        })
+        .catch(function(err) {
+            res.send(err)
+        })
 })
 
-app.get('/add', function(req, res) {
-    let vendor = Model.Vendor.findAll()
-    let terminal = Model.Terminal.findAll()
-    
-    Promise.all([vendor, terminal])
-    .then(function(values){
-        // console.log(values)
-        res.render('addNewBike', {vendors:values[0], terminals:values[1]})
-    })
-    .catch(function(err){
-        res.json(err)
-    })
-    
+route.get('/add', function(req, res) {
+    res.render('addNewBike')
 })
 
-app.post('/add', function(req, res) { 
+route.post('/add', function(req, res) {
+    console.log(req.body)
+
     Model.Bike.create({
         category: req.body.category,
         VendorId : req.body.VendorId,
@@ -42,7 +31,7 @@ app.post('/add', function(req, res) {
     })
 })
 
-app.get('/delete/:id', function(req, res) {
+route.get('/delete/:id', function(req, res) {
     console.log(req.body)
     Model.Bike.destroy({
         where: {
@@ -55,4 +44,4 @@ app.get('/delete/:id', function(req, res) {
     })
 })
 
-module.exports = app
+module.exports = route
