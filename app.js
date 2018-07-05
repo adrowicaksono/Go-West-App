@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 
 
-// app.use('/', index)
+app.use('/', index)
 app.use('/customer', customer)
 // app.use('/vendor', vendor)
 // app.use('/bike', bike)

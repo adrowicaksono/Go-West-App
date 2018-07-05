@@ -3,7 +3,7 @@ const app = express()
 const Model = require('../models')
 
 app.get('/', function(req, res) {
-    res.render('login')
+    res.render('../views/auth/login')
 })
 
 app.get('/index', function(req, res) {
