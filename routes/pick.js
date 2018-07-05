@@ -3,7 +3,6 @@ const route = express.Router()
 const Model = require('../models')
 
 route.get('/', function(req, res){
-    
     Model.Terminal
     .findAll({
         include:[{
@@ -13,12 +12,11 @@ route.get('/', function(req, res){
         order :[['location', 'asc']]
     })
     .then(function(terminals){
-        res.render('../views/Go-West/mainPage', {terminals:terminals} )
+        res.render('pick.ejs', {terminals:terminals} )
     })
     .catch(function(err){
         res.json(err)
     })
-    
 })
 
 route.get('/:id', function(req, res){
@@ -36,6 +34,14 @@ route.get('/:id', function(req, res){
     .catch(function(err){
         res.send(err)
     })
+})
+
+route.post('/:id', function(req, res) {
+    console.log('post pick bike')
+    // Model.Terminal.findAll()
+    // .then(function(dataTerminal) {
+    //     res.render('')
+    // })
 })
 
 route.post('/:id/update', function(req,res){

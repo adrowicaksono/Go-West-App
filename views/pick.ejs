@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pick Bike</title>
+    <h1>Pick Bike</h1>
+</head>
+<body>
+    <form action="bike/:id" method="post">
+        <h2>Choose Terminal</h2>
+        <br>
+        <select name="terminal">
+            <% data.forEach(function(dataTerminal) { %>
+                <option value="<%=data.terminal%>"><%= data.terminal%></option>
+            <%})%>
+        </select>
+        <br>
+
+        <h2>Choose Bike</h2>
+        <br>
+        <select name="bike">
+            <% data.forEach(function(dataTerminal) { %>
+                <option value="<%=data.bike%>"><%= data.bike%></option>
+            <%})%>
+        </select>
+        <br>
+
+        <input type="submit" name="Search">
+    </form>
+</body>
+</html>
