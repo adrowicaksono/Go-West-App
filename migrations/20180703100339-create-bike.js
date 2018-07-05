@@ -14,19 +14,21 @@ module.exports = {
       tag: {
         type: Sequelize.STRING
       },
-      vendorId: {
+      VendorId: {
         type: Sequelize.INTEGER
       },
-      terminalId: {
+      TerminalId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue : new Date,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue : new Date,
       }
     });
   },

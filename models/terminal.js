@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Terminal.associate = function(models) {
     // associations can be defined here
+    Terminal.hasMany(models.Bike)
   };
   return Terminal;
 };

@@ -2,6 +2,7 @@ const express = require('express')
 const route = express.Router()
 const Model = require('../models')
 
+
 route.get('/', function(req, res) {
     Model.Bike.findAll()
         .then(function(dataBike) {
@@ -18,8 +19,11 @@ route.get('/add', function(req, res) {
 
 route.post('/add', function(req, res) {
     console.log(req.body)
+
     Model.Bike.create({
-        tag: req.body.tag,
+        category: req.body.category,
+        VendorId : req.body.VendorId,
+        TerminalId : req.body.TerminalId,
     }).then(function() {
         res.redirect('/bike')
     }).catch(function(err) {

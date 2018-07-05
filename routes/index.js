@@ -6,11 +6,13 @@ route.get('/', function(req, res) {
     res.render('login')
 })
 
+
 route.get('/index', function(req, res) {
     res.render('index')
 })
 
 route.post('/login/authentication', function(req, res) {
+
     Model.Customer.findAll({
         where: {
             name: req.body.username,
