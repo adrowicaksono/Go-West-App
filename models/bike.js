@@ -2,8 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   var Bike = sequelize.define('Bike', {
     status: {
-      type: DataTypes.STRING,
-      defaultValue: 'free'
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     },
     tag: {
       type: DataTypes.STRING

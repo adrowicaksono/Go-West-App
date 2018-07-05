@@ -13,8 +13,18 @@ route.get('/', function(req, res) {
         })
 })
 
-route.get('/add', function(req, res) {
-    res.render('addNewBike')
+route.get('/add', function(req, res){
+    let vendors = Model.Vendor.findAll()
+    let terminals = Model.Terminal.findAll()
+
+    Promise.all([vendors, terminals])
+    .then(function(values){
+        res.render('addNewBike',{vendors:values[0],terminals:values[1]})
+    })
+    .catch(function(err){
+        res.send('maintance page')
+    })
+    
 })
 
 route.post('/add', function(req, res) {

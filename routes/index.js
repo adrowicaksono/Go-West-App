@@ -71,4 +71,8 @@ route.get('/logout/authentication', function(req, res){
     res.redirect('/')
 })
 
+route.get('/index', function(req, res) {
+    res.render('index')
+})
+
 module.exports = route

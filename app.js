@@ -27,9 +27,10 @@ app.use(session({
 
 app.use('/', index)
 app.use('/customer', customer)
-// app.use('/vendor', vendor)
-// app.use('/bike', bike)
-// app.use('/terminal', terminal)
+
+app.use('/vendor', vendor)
+app.use('/bike', bike)
+app.use('/terminal', terminal)
 
 
 app.listen(PORT, function() {
