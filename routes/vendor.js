@@ -1,8 +1,8 @@
 const express = require('express')
-const app = express()
+const route = express.Router()
 const Model = require('../models')
 
-app.get('/', function(req, res) {
+route.get('/', function(req, res) {
     Model.Vendor.findAll()
     .then(function(dataVendor) {
         res.render('vendorIndex', {dataVendor})
@@ -11,11 +11,11 @@ app.get('/', function(req, res) {
     })
 })
 
-app.get('/add', function(req, res) {
+route.get('/add', function(req, res) {
     res.render('addNewVendor')
 })
 
-app.post('/add', function(req, res) {
+route.post('/add', function(req, res) {
     Model.Vendor.create({
         name: req.body.name,
         bike: req.body.bike,
@@ -30,7 +30,7 @@ app.post('/add', function(req, res) {
     })
 })
 
-app.get('/delete/:id', function(req, res) {
+route.get('/delete/:id', function(req, res) {
     Model.Vendor.destroy({
         where: {
             id: req.params.id
@@ -40,7 +40,7 @@ app.get('/delete/:id', function(req, res) {
     })
 })
 
-app.get('/edit/:id', function(req, res) {
+route.get('/edit/:id', function(req, res) {
     Model.Vendor.findById(req.params.id)
     .then(function(edited) {
         res.render('editVendor', {edited})
@@ -50,7 +50,7 @@ app.get('/edit/:id', function(req, res) {
     })
 })
 
-app.post('/edit/:id', function(req, res) {
+route.post('/edit/:id', function(req, res) {
     Model.Vendor.update({
         name: req.body.name
     }, { where:
@@ -64,4 +64,4 @@ app.post('/edit/:id', function(req, res) {
     })
 })
 
-module.exports = app
+module.exports = route

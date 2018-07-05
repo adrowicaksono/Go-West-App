@@ -1,8 +1,8 @@
 const express = require('express')
-const app = express()
+const route = express.Router()
 const Model = require('../models')
 
-app.get('/', function(req, res) {
+route.get('/', function(req, res) {
     Model.Bike.findAll()
         .then(function(dataBike) {
             res.render('bikeIndex', {dataBike})
@@ -12,11 +12,11 @@ app.get('/', function(req, res) {
         })
 })
 
-app.get('/add', function(req, res) {
+route.get('/add', function(req, res) {
     res.render('addNewBike')
 })
 
-app.post('/add', function(req, res) {
+route.post('/add', function(req, res) {
     console.log(req.body)
     Model.Bike.create({
         tag: req.body.tag,
@@ -27,7 +27,7 @@ app.post('/add', function(req, res) {
     })
 })
 
-app.get('/delete/:id', function(req, res) {
+route.get('/delete/:id', function(req, res) {
     console.log(req.body)
     Model.Bike.destroy({
         where: {
@@ -40,4 +40,4 @@ app.get('/delete/:id', function(req, res) {
     })
 })
 
-module.exports = app
+module.exports = route

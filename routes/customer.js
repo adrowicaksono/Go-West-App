@@ -1,8 +1,8 @@
 const express = require('express')
-const app = express()
+const route = express.Router()
 const Model = require('../models')
 
-app.get('/', function(req, res) {
+route.get('/', function(req, res) {
     Model.Customer.findAll()
         .then(function(dataCustomer) {
             res.render('customerIndex', {dataCustomer})
@@ -12,11 +12,11 @@ app.get('/', function(req, res) {
         })
 })
 
-app.get('/add', function(req, res) {
+route.get('/add', function(req, res) {
     res.render('addNewCustomer')
 })
 
-app.post('/add', function(req, res) {
+route.post('/add', function(req, res) {
     Model.Customer.create({
         name: req.body.name,
         age: req.body.age,
@@ -35,7 +35,7 @@ app.post('/add', function(req, res) {
     })
 })
 
-app.get('/delete/:id', function(req, res) {
+route.get('/delete/:id', function(req, res) {
     Model.Customer.destroy(
         {
             where: {
@@ -48,7 +48,7 @@ app.get('/delete/:id', function(req, res) {
     })
 })
 
-app.get('/edit/:id', function(req, res) {
+route.get('/edit/:id', function(req, res) {
     Model.Customer.findById(req.params.id)
     .then(function(edited) {
         res.render('editCustomer', {edited})
@@ -58,7 +58,7 @@ app.get('/edit/:id', function(req, res) {
     })
 })
 
-app.post('/edit/:id', function(req, res) {
+route.post('/edit/:id', function(req, res) {
     Model.Customer.update({
         name: req.body.name,
         age: req.body.age,
@@ -77,4 +77,4 @@ app.post('/edit/:id', function(req, res) {
 })
 
 
-module.exports = app
+module.exports = route

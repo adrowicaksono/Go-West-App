@@ -7,6 +7,8 @@ const bike = require('./routes/bike.js')
 const terminal = require('./routes/terminal')
 const bodyParser = require('body-parser')
 
+app.locals.dateFormat = require('./helper')
+
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.set('view engine', 'ejs')

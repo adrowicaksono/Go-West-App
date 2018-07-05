@@ -1,8 +1,8 @@
 const express = require('express')
-const app = express()
+const route = express.Router()
 const Model = require('../models')
 
-app.get('/', function(req, res) {
+route.get('/', function(req, res) {
     Model.Terminal.findAll()
         .then(function(dataTerminal) {
             res.render('terminalIndex', {dataTerminal})
@@ -12,11 +12,11 @@ app.get('/', function(req, res) {
         })
 })
 
-app.get('/add', function(req, res) {
+route.get('/add', function(req, res) {
     res.render('addNewTerminal')
 })
 
-app.post('/add', function(req, res) {
+route.post('/add', function(req, res) {
     Model.Terminal.create({
         location: req.body.location,
         createdAt: new Date(),
@@ -30,7 +30,7 @@ app.post('/add', function(req, res) {
     })
 })
 
-app.get('/delete/:id', function(req, res) {
+route.get('/delete/:id', function(req, res) {
     Model.Terminal.destroy({
         where: {
             id: req.params.id
@@ -40,7 +40,7 @@ app.get('/delete/:id', function(req, res) {
     })
 })
 
-app.get('/edit/:id', function(req, res) {
+route.get('/edit/:id', function(req, res) {
     Model.Terminal.findById(req.params.id)
     .then(function(edited) {
         res.render('editTerminal', {edited})
@@ -50,7 +50,7 @@ app.get('/edit/:id', function(req, res) {
     })
 })
 
-app.post('/edit/:id', function(req, res) {
+route.post('/edit/:id', function(req, res) {
     Model.Terminal.update({
         location: req.body.location
     }, { where:
@@ -65,4 +65,4 @@ app.post('/edit/:id', function(req, res) {
 })
 
 
-module.exports = app
+module.exports = route
