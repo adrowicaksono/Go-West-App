@@ -40,6 +40,20 @@ module.exports = (sequelize, DataTypes) => {
   Customer.associate = function(models) {
     // associations can be defined here
   };
+  Customer.afterBulkUpdate((customer,option)=>{
+    let bikeId = customer.attributes.BikeId
+    let Bike = sequelize.models.Bike
+    Bike
+    .update({
+      status: false
+    },{where : {
+      id:bikeId
+    }})
+    .catch(function(err){
+      console.log("after BulkUpdate : ",err)
+    })
+    console.log("===================>",customer.attributes.BikeId)
+  });
 
   Customer.beforeCreate((customer, options) => {
     let born = new Date(customer.birthdate)

@@ -4,7 +4,9 @@ const Model = require('../models')
 
 
 route.get('/', function(req, res) {
-    Model.Bike.findAll()
+    Model.Bike.findAll({
+        include :[Model.Vendor, Model.Terminal]
+    })
         .then(function(dataBike) {
             res.render('bikeIndex', {dataBike})
         })

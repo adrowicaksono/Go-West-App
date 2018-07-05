@@ -1,5 +1,4 @@
 const express = require('express')
-
 const route = express.Router()
 const Model = require('../models')
 
@@ -20,14 +19,13 @@ route.get('/add', function(req, res) {
 })
 
 route.post('/add', function(req, res) {
-
+    console.log(req.body)
     Model.Customer.create({
         name: req.body.name,
         gender: req.body.gender,
         email: req.body.email,
         birthdate: req.body.birthdate,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        password :12345,
     })
     .then(function() {
         console.log(req.body)

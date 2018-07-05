@@ -9,6 +9,53 @@
 </head>
 <body>
     <%- include('../partial/header.ejs') %>
-  <h1>GOWEST</h1>  
+  <h1>GOWEST</h1>
+  
+  <div class="jumbotron">
+        <h1 class="display-3">Hello, pedalers!</h1>
+        <p class="lead">Go and breathe, be human</p>
+        <hr class="my-4">
+        <p>lets pick your bike</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="/pick" role="button">Learn more</a>
+        </p>
+    </div>
+    <% if(typeof terminals != 'undefined' ){ %>
+     
+    <table>
+        <thead>
+            <tr>
+                <th>PICK your bike :</th>
+            </tr>
+        </thead>
+        <tbody>
+                <% terminals.forEach(function(el){ %>
+                    <tr>
+                        <td>
+                            <h1>
+                                    <%- el.location %>
+                            </h1>
+                            
+                            <ul>
+                                <% el.Bikes.forEach(elB =>{ %>
+                                    <li> 
+                                        <% if(elB.status === true){ %>
+                                            <div class="form-group">
+                                                    <fieldset disabled="">
+                                                      <label class="control-label" for="disabledInput"><%- elB.id %> : <%- elB.category %> </label>
+                                                      <input class="form-control" name="id" values="<%- elB.id %>" id="disabledInput" type="text" placeholder="<%- elB.category %>" disabled="">
+                                                    </fieldset>
+                                            </div>
+                                            <a class="btn btn-warning btn-sm" href="/pick/<%- elB.id %>" role="button">PICK !!!</a>
+                                        <% } %>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </td>
+                    </tr>
+                <% }) %>
+        </tbody>
+    </table>  
+    <% } %>
 </body>
 </html>
