@@ -7,7 +7,7 @@ const vendor = require('./routes/vendor.js')
 const customer = require('./routes/customer.js')
 const bike = require('./routes/bike.js')
 const terminal = require('./routes/terminal')
-
+const pick = require('./routes/pick')
 const nodemailer = require('nodemailer')
 const exphbs = require('express-handlebars')
 
@@ -33,7 +33,7 @@ app.use('/customer', customer)
 app.use('/vendor', vendor)
 app.use('/bike', bike)
 app.use('/terminal', terminal)
-
+app.use('/pick', pick)
 app.get('/send', function(req, res) {
     res.render('mail.handlebars')
 })
