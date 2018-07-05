@@ -73,7 +73,23 @@ route.get('/logout/authentication', function(req, res){
     res.redirect('/')
 })
 
-route.get('/index', function(req, res) {
+route.get('/index', function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+},function(req, res) {
     res.render('index')
 })
 

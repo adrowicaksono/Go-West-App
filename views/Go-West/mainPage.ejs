@@ -25,11 +25,34 @@
                     <form action="/pick/<%- bike.id %>/<%- user.id %>/return" method="POST">
                         <input class="btn btn-primary btn-lg" type="submit" value="RETURN">
                     </form>
+                    <% arounds.forEach(el=>{ %>
+                    </p>
+                    </div>    
+                        
+                        <div class="alert alert-dismissible alert-info">
+                            
+                            <ul style="list-style-type: none">
+                            <li><strong>around you !!</strong></li>
+                            <li> bike   :<%- el.category %> - <%- el.id %></li>
+                            <li> name   :<%- el.Customers[0].name %></li>
+                            <li> age    :<%- el.Customers[0].age %></li>
+                            <li> gender  :<%- el.Customers[0].gender %></li>
+                            <li>
+                                do you want <a href="#" class="alert-link">send email</a>
+                            </li>
+                            </ul>
+                           
+                                     
+                          </div>
+                        <br>
+                    <% }) %>
+                    
                 <% }else{ %>
-                    <a class="btn btn-primary btn-lg" href="/pick" role="button">Let's Move !!!!</a>           
+                    <a class="btn btn-primary btn-lg" href="/pick" role="button">Let's Move !!!!</a> 
+                </p>
+                </div>         
                 <% } %>
-        </p>
-    </div>
+      
     <% if(typeof terminals != 'undefined' ){ %>
     <table>
         <thead>

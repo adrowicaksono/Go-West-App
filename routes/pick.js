@@ -2,17 +2,42 @@ const express = require('express')
 const route = express.Router()
 const Model = require('../models')
 
-route.get('/',function(req, res){
+route.get('/',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        next()
+    }else{
+        res.render('../views/auth/login', {
+            error:{errors:[{message:'you are not login'}]
+            }
+        }) 
+    }
+},function(req, res){
     if(req.session.current_user.BikeId){
-        let bike = Model.Bike
+        Model.Bike
         .findOne({
-            include:[Model.Terminal],
+            include:[{
+                model : Model.Customer,
+                where : {
+
+                }
+            },Model.Terminal],
             where:{
                 id:req.session.current_user.BikeId
             }
         })
         .then(function(bike){
-            res.render('../views/Go-West/mainPage', {user:req.session.current_user, bike:bike})
+            Model.Bike
+            .findAll({
+                include:Model.Customer,
+                where:{
+                    status:false,
+                    TerminalId : bike.TerminalId
+                }
+            })
+            .then(function(arounds){
+                res.render('../views/Go-West/mainPage', {user:req.session.current_user, bike:bike, arounds:arounds})
+            })
         })
         .catch(function(err){
             res.json(err)
@@ -37,9 +62,16 @@ route.get('/',function(req, res){
     
 })
 
-route.get('/:id/bike',function(req, res, next){
-    console.log(req.session.current_user)
-    next()
+route.get('/:id/bike',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        next()
+    }else{
+        res.render('../views/auth/login', {
+            error:{errors:[{message:'you are not login'}]
+            }
+        }) 
+    }
 },function(req, res){
     Model.Bike
     .findOne({
@@ -49,7 +81,6 @@ route.get('/:id/bike',function(req, res, next){
         }
     })
     .then(function(bike){
-        // res.json(bike)
         res.render('../views/Go-West/pick',{bike:bike})
     })
     .catch(function(err){
@@ -59,7 +90,17 @@ route.get('/:id/bike',function(req, res, next){
 
 
 
-route.post('/:id/update', function(req,res){
+route.post('/:id/update',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        next()
+    }else{
+        res.render('../views/auth/login', {
+            error:{errors:[{message:'you are not login'}]
+            }
+        }) 
+    }
+} ,function(req,res){
     console.log(req.session.current_user)
     Model.Customer
     .update({
@@ -81,7 +122,18 @@ route.post('/:id/update', function(req,res){
             console.log(bike)
             req.session.current_user.BikeId = req.params.id
             console.log(req.session.current_user)
-            res.render('../views/Go-West/mainPage', {user:req.session.current_user, bike:bike})
+            Model.Bike
+            .findAll({
+                include:Model.Customer,
+                where:{
+                    status:false,
+                    TerminalId : bike.TerminalId
+                }
+            })
+            .then(function(arounds){
+                res.render('../views/Go-West/mainPage', {user:req.session.current_user, bike:bike, arounds:arounds})
+            })
+            // res.render('../views/Go-West/mainPage', {user:req.session.current_user, bike:bike})
         })
         .catch(function(err){
             res.json(err)
@@ -93,7 +145,17 @@ route.post('/:id/update', function(req,res){
     })
 })
 
-route.post('/:idBike/:idCustomer/return',function(req, res){
+route.post('/:idBike/:idCustomer/return',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        next()
+    }else{
+        res.render('../views/auth/login', {
+            error:{errors:[{message:'you are not login'}]
+            }
+        }) 
+    }
+},function(req, res){
     let bike = Model.Bike
     .update({
         status:true
@@ -125,7 +187,17 @@ route.post('/:idBike/:idCustomer/return',function(req, res){
     })
 })
 
-route.get('/search', function(req, res){
+route.get('/search',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        next()
+    }else{
+        res.render('../views/auth/login', {
+            error:{errors:[{message:'you are not login'}]
+            }
+        }) 
+    }
+} ,function(req, res){
     let terminals = Model.Terminal.findAll()
     let bikes = Model.Bike.findAll({
         order :[['id', 'asc']]
