@@ -76,7 +76,7 @@ route.post('/edit/:id', function(req, res) {
         res.redirect('/customer')
     })
     .catch(function(err) {
-        res.render('editCustomer')
+        res.send(err)
     })
 })
 
