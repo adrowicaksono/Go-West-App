@@ -2,7 +2,7 @@ const express = require('express')
 const route = express.Router()
 const Model = require('../models')
 const bcrypt = require('bcrypt')
-
+const sendEmail = require('../mailer.js')
 
 route.get('/', function(req, res) {
     // res.json(req.session.current_user)
@@ -28,7 +28,8 @@ route.post('/register', function(req, res) {
         password : req.body.password,
         gender : req.body.gender,
     })
-    .then(function(){
+    .then(function(dataCustomer){
+        sendEmail(dataCustomer.dataValues)
         res.redirect('/')
     })
     .catch(function(err){
