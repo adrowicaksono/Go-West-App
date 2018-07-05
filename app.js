@@ -13,6 +13,7 @@ app.locals.dateFormat = require('./helpers/dateFormat.js')
 
 app.set("view engine", "ejs")
 
+
 app.use(bodyParser.urlencoded({extended: false}))
 
 
