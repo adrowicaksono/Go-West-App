@@ -13,11 +13,18 @@ app.locals.dateFormat = require('./helpers/dateFormat.js')
 
 app.set("view engine", "ejs")
 
+
 app.use(bodyParser.urlencoded({extended: false}))
 
 
 
 // app.use('/', index)
+
+    
+})
+
+app.use('/', index)
+
 app.use('/customer', customer)
 // app.use('/vendor', vendor)
 // app.use('/bike', bike)
