@@ -1,4 +1,4 @@
-const PORT = 3000
+const port = process.env.PORT || 4000;
 const express = require('express')
 const app = express()
 const session = require('express-session')
@@ -14,7 +14,7 @@ const exphbs = require('express-handlebars')
 
 //helpers
 app.locals.dateFormat = require('./helpers/dateFormat.js')
-
+// app.use(express.cookieParser())
 app.use(express.urlencoded({extended: false}))
 
 app.use(session({
@@ -34,10 +34,9 @@ app.use('/vendor', vendor)
 app.use('/bike', bike)
 app.use('/terminal', terminal)
 app.use('/pick', pick)
+
 app.get('/send', function(req, res) {
     res.render('mail.handlebars')
 })
 
-app.listen(PORT, function() {
-    console.log(`ONLINE ON ${PORT}`)
-})
+app.listen(port,console.log('listening on port 4000')) 

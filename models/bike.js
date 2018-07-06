@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Bike.associate = function(models) {
     Bike.belongsTo(models.Terminal)
     Bike.belongsTo(models.Vendor)
+    Bike.hasMany(models.Customer)
   };
   
 

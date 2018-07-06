@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   Customer.associate = function(models) {
-    // associations can be defined here
+    Customer.belongsTo(models.Bike)
   };
   Customer.afterBulkUpdate((customer,option)=>{
     let bikeId = customer.attributes.BikeId

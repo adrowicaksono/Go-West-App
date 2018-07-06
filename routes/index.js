@@ -50,7 +50,8 @@ route.post('/login/authentication',(req,res,next)=>{
     	 if(customer) {
             let password = bcrypt.compareSync(passTemp,customer.password)
     		if (password) {
-    			req.session.current_user = customer
+                req.session.current_user = customer
+                console.log(req.session.current_user)
 	    		res.render('../views/Go-West/mainPage')
     		}else{
                 res.render('../views/auth/login', {
@@ -72,7 +73,23 @@ route.get('/logout/authentication', function(req, res){
     res.redirect('/')
 })
 
-route.get('/index', function(req, res) {
+route.get('/index', function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+},function(req, res) {
     res.render('index')
 })
 

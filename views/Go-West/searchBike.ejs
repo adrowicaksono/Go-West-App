@@ -2,15 +2,16 @@
 <html>
 <head>
     <title>Pick Bike</title>
-    <h1>Pick Bike</h1>
+    
 </head>
 <body>
+    <h1>Pick Bike</h1>
     <form action="bike/:id" method="post">
         <h2>Choose Terminal</h2>
         <br>
         <select name="terminal">
-            <% data.forEach(function(dataTerminal) { %>
-                <option value="<%=data.terminal%>"><%= data.terminal%></option>
+            <% terminals.forEach(function(el) { %>
+                <option value="<%=el.id%>"><%= el.location%></option>
             <%})%>
         </select>
         <br>
@@ -18,13 +19,16 @@
         <h2>Choose Bike</h2>
         <br>
         <select name="bike">
-            <% data.forEach(function(dataTerminal) { %>
-                <option value="<%=data.bike%>"><%= data.bike%></option>
+            <% bikes.forEach(function(el) { %>
+                <option value="<%= el.id %>"><%= el.id %> : <%= el.category %></option>
             <%})%>
         </select>
         <br>
 
         <input type="submit" name="Search">
     </form>
+<script>
+
+</script>
 </body>
 </html>

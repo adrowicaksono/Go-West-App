@@ -3,7 +3,19 @@ const route = express.Router()
 const Model = require('../models')
 
 
-route.get('/', function(req, res) {
+route.get('/', function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            res.redirect('/')    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+},function(req, res) {
     Model.Bike.findAll({
         include :[Model.Vendor, Model.Terminal]
     })
@@ -15,7 +27,19 @@ route.get('/', function(req, res) {
         })
 })
 
-route.get('/add', function(req, res){
+route.get('/add', function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            res.redirect('/')    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+},function(req, res){
     let vendors = Model.Vendor.findAll()
     let terminals = Model.Terminal.findAll()
 
@@ -29,7 +53,19 @@ route.get('/add', function(req, res){
     
 })
 
-route.post('/add', function(req, res) {
+route.post('/add', function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            res.redirect('/')    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+},function(req, res) {
     console.log(req.body)
 
     Model.Bike.create({
@@ -43,7 +79,23 @@ route.post('/add', function(req, res) {
     })
 })
 
-route.get('/delete/:id', function(req, res) {
+route.get('/delete/:id',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+} ,function(req, res) {
     console.log(req.body)
     Model.Bike.destroy({
         where: {
