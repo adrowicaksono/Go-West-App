@@ -1,20 +1,47 @@
 const express = require('express')
-const app = express()
+const route = express.Router()
 const Model = require('../models')
 
-app.get('/', function(req, res) {
+
+route.get('/', function(req, res) {
+    Model.Bike.findAll()
+        .then(function(dataBike) {
+            res.render('bikeIndex', {dataBike})
+        })
+        .catch(function(err) {
+            res.send(err)
+        })
+})
+
+route.get('/add', function(req, res) {
     res.render('addNewBike')
 })
 
-app.get('/add', function(req, res) {
-    res.render('addNewBike')
-})
-
-app.post('/add', function(req, res) {
+route.post('/add', function(req, res) {
     console.log(req.body)
+
     Model.Bike.create({
-        
+        category: req.body.category,
+        VendorId : req.body.VendorId,
+        TerminalId : req.body.TerminalId,
+    }).then(function() {
+        res.redirect('/bike')
+    }).catch(function(err) {
+        res.send(err)
     })
 })
 
-module.exports = app
+route.get('/delete/:id', function(req, res) {
+    console.log(req.body)
+    Model.Bike.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function() {
+            res.redirect('/bike')
+    }).catch(function(err) {
+        res.send(err)
+    })
+})
+
+module.exports = route

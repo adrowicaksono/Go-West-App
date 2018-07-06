@@ -20,7 +20,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      bikeId: {
+      BikeId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
