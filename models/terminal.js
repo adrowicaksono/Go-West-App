@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     location: {
       type: DataTypes.STRING,
       validate: {
-        allowNull: false
+        notEmpty: true
       }
     }
   }, {});

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     category :{
       type: DataTypes.STRING,
       validate: {
-        allowNull: false
+        notEmpty: true
       },
     }
   }, {});

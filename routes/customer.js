@@ -2,24 +2,9 @@ const express = require('express')
 const route = express.Router()
 const Model = require('../models')
 const sendEmail = require('../mailer.js')
+const cekAdmin = require('../middleware/admincheck')
 
-route.get('/',function(req,res,next){
-    let user = req.session.current_user
-    if(user){
-        if(user.role === "admin"){
-            next()
-        }else{
-            
-            res.render('../views/auth/login', {
-                error:{errors:[{message:'you are not admin'}]
-                }
-            })    
-        }
-    }else{
-        res.redirect('/')
-    }
-
-} ,function(req, res) {
+route.get('/', cekAdmin ,function(req, res) {
 
     Model.Customer.findAll()
         .then(function(dataCustomer) {
@@ -129,29 +114,16 @@ route.get('/edit/:id',function(req,res,next){
     })
 })
 
-route.post('/edit/:id',function(req,res,next){
-    let user = req.session.current_user
-    if(user){
-        if(user.role === "admin"){
-            next()
-        }else{
-            
-            res.render('../views/auth/login', {
-                error:{errors:[{message:'you are not admin'}]
-                }
-            })    
-        }
-    }else{
-        res.redirect('/')
-    }
-
-} ,function(req, res) {
+route.post('/edit/:id', cekAdmin,function(req, res) {
+    console.log(req.body)
+    console.log(req.params.id)
     Model.Customer.update({
+        id : req.params.id,
         name: req.body.name,
         age: req.body.age,
         gender: req.body.gender,
         email: req.body.email,
-        birthdate: req.body.birthdate,
+        // birthdate: new Date(req.body.birthdate),
     }, { where:
         {id: req.params.id}
     })

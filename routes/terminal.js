@@ -136,7 +136,6 @@ route.post('/edit/:id',function(req,res,next){
         if(user.role === "admin"){
             next()
         }else{
-            
             res.render('../views/auth/login', {
                 error:{errors:[{message:'you are not admin'}]
                 }
