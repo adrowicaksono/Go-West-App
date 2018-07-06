@@ -3,7 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   var Terminal = sequelize.define('Terminal', {
     location: {
       type: DataTypes.STRING,
-      allowNull: false
+      validate: {
+        allowNull: false
+      }
     }
   }, {});
   Terminal.associate = function(models) {

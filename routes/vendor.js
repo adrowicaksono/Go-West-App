@@ -74,7 +74,7 @@ route.post('/add',function(req,res,next){
         res.redirect('/vendor')
     })
     .catch(function(err) {
-        res.send(err)
+        res.render('addNewVendor', {msg: 'Please fill all fields'})
     })
 })
 

@@ -74,7 +74,7 @@ route.post('/add',function(req,res,next){
         res.redirect('/terminal')
     })
     .catch(function(err) {
-        res.send(err)
+        res.render('addNewTerminal', {msg: 'Please fill all fields'})
     })
 })
 

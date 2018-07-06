@@ -33,6 +33,7 @@ route.get('/',function(req,res,next){
 
 route.get('/add',function(req,res,next){
     let user = req.session.current_user
+    // console.log(user)
     if(user){
         if(user.role === "admin"){
             next()
@@ -52,6 +53,7 @@ route.get('/add',function(req,res,next){
 })
 
 route.post('/add', function(req, res) {
+    console.log('this is req body', req.body)
     Model.Customer.create({
         name: req.body.name,
         password: req.body.password,
@@ -60,12 +62,13 @@ route.post('/add', function(req, res) {
         birthdate: req.body.birthdate,
     })
     .then(function(dataCust) {
-        // console.log('customer routes---',req.body)
+        console.log('customer routes---',req.body)
         sendEmail(dataCust.dataValues)
         res.redirect('/customer')
     })
-    .catch(function(err) {
-        res.send(err)
+    .catch(function() {
+        console.log('catch error')
+        res.render('addNewCustomer', {msg: 'Please fill all fields'})
     })
 })
 
@@ -156,7 +159,7 @@ route.post('/edit/:id',function(req,res,next){
         res.redirect('/customer')
     })
     .catch(function(err) {
-        res.render('editCustomer')
+        res.send(err)
     })
 })
 
