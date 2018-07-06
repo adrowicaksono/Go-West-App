@@ -24,6 +24,7 @@
 <body>
     <table>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Age</th>
             <th>Gender</th>
@@ -35,6 +36,7 @@
 
         <% dataCustomer.forEach(function(dataCust) { %>
             <tr>
+                <td><%= dataCust.id %></td>
                 <td><%= dataCust.name %></td>
                 <td><%= dataCust.age %></td>
                 <td><%= dataCust.gender %></td>

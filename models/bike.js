@@ -2,8 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   var Bike = sequelize.define('Bike', {
     status: {
-      type: DataTypes.STRING,
-      defaultValue: 'free'
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     },
     tag: {
       type: DataTypes.STRING
@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   Bike.associate = function(models) {
     Bike.belongsTo(models.Terminal)
     Bike.belongsTo(models.Vendor)
+    Bike.hasMany(models.Customer)
   };
+  
+
+
+
+
   return Bike;
 };

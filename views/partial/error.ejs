@@ -1,0 +1,10 @@
+<% if(error){ %>
+    <ul>
+    <% error.errors.forEach(function(el){ %>
+        <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Oh snap!</strong> <%- el.message %>
+        </div>
+    <% }) %>
+    </ul>
+<%  }   %>

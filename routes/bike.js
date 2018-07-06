@@ -3,8 +3,22 @@ const route = express.Router()
 const Model = require('../models')
 
 
-route.get('/', function(req, res) {
-    Model.Bike.findAll()
+route.get('/', function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            res.redirect('/')    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+},function(req, res) {
+    Model.Bike.findAll({
+        include :[Model.Vendor, Model.Terminal]
+    })
         .then(function(dataBike) {
             res.render('bikeIndex', {dataBike})
         })
@@ -13,11 +27,45 @@ route.get('/', function(req, res) {
         })
 })
 
-route.get('/add', function(req, res) {
-    res.render('addNewBike')
+route.get('/add', function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            res.redirect('/')    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+},function(req, res){
+    let vendors = Model.Vendor.findAll()
+    let terminals = Model.Terminal.findAll()
+
+    Promise.all([vendors, terminals])
+    .then(function(values){
+        res.render('addNewBike',{vendors:values[0],terminals:values[1]})
+    })
+    .catch(function(err){
+        res.send('maintance page')
+    })
+    
 })
 
-route.post('/add', function(req, res) {
+route.post('/add', function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            res.redirect('/')    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+},function(req, res) {
     console.log(req.body)
 
     Model.Bike.create({
@@ -31,7 +79,23 @@ route.post('/add', function(req, res) {
     })
 })
 
-route.get('/delete/:id', function(req, res) {
+route.get('/delete/:id',function(req,res,next){
+    let user = req.session.current_user
+    if(user){
+        if(user.role === "admin"){
+            next()
+        }else{
+            
+            res.render('../views/auth/login', {
+                error:{errors:[{message:'you are not admin'}]
+                }
+            })    
+        }
+    }else{
+        res.redirect('/')
+    }
+
+} ,function(req, res) {
     console.log(req.body)
     Model.Bike.destroy({
         where: {
